@@ -1,0 +1,46 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+// @mixin media-breakpoint-up-xxl{
+//     @media screen and (min-width:1380px) {
+//         @content;
+//     }
+// }
+
+@mixin media-breakpoint-up-xl{
+    @media screen and (min-width:1200px) {
+        @content;
+    }
+}
+@mixin media-breakpoint-up-lg{
+    @media screen and (min-width:992px) {
+        @content;
+    }
+}
+@mixin media-breakpoint-up-md{
+    @media screen and (min-width:768px) {
+        @content;
+    }
+} 
+@mixin media-breakpoint-up-sm{
+    @media screen and (min-width:576px) {
+        @content;
+    }
+}

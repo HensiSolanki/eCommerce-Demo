@@ -1,0 +1,34 @@
+/*
+ *
+ *   INSPINIA - Responsive Admin Theme
+ *   version 2.8
+ *
+*/
+
+// Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Select2
+@import '~select2/src/scss/core.scss';
+@import '~select2/src/scss/multiple';
+
+// Font awesome
+  @import "../vendor/font-awesome/scss/font-awesome";
+
+// i-check
+@import "../vendor/iCheck/css/custom.css";
+
+// Animate
+@import "../vendor/animate/animate.css";
+
+// Toastr
+@import "~toastr/toastr";
+
+//metismenu
+@import "import/metismenu";
+
+//INSPINIA
+@import './import/style';
