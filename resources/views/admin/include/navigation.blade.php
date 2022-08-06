@@ -70,9 +70,9 @@
             </li>
             @endcan
             @can('user_view')
-            <li class="{{ isActiveRoute(['admin::users.index', 'admin::users.create', 'admin::users.edit']) }}">
-                <a href="{{ url(config('settings.ADMIN_PREFIX').'users') }}"><i class="fa fa-users"
-                        aria-hidden="true"></i><span class="nav-label">Users</span></a>
+            <li class="{{ isActiveRoute(['admin::category.index', 'admin::category.create', 'admin::category.edit']) }}">
+                <a href="{{ url(config('settings.ADMIN_PREFIX').'category') }}"><i class="fa fa-users"
+                        aria-hidden="true"></i><span class="nav-label">Categories</span></a>
             </li>
             @endcan
         </ul>
