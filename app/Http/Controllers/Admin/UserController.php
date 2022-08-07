@@ -69,7 +69,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
-        $input = $request->only(['name', 'email']);
+        $input = $request->only(['name', 'email','address','phone']);
         $input['password'] = Hash::make($request->password);
 
         try {
@@ -120,7 +120,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,' . $id],
         ]);
 
-        $input = $request->only(['name', 'email']);
+        $input = $request->only(['name', 'email','address','phone']);
 
         try {
             $user = $this->model->where('id', $id)->first();
