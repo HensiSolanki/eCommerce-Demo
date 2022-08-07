@@ -74,17 +74,17 @@ return [
             'description' => "Products View"
         ],
         [
-            'name' => "media_add",
+            'name' => "products_add",
             'display_name' => "Products Add",
             'description' => "Products Add"
         ],
         [
-            'name' => "media_edit",
+            'name' => "products_edit",
             'display_name' => "Products Edit",
             'description' => "Products Edit"
         ],
         [
-            'name' => "media_delete",
+            'name' => "products_delete",
             'display_name' => "Products Delete",
             'description' => "Products Delete"
         ]
