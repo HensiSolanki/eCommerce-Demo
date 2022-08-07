@@ -16,18 +16,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('blog-front::blog.list') }}">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('Cms-front::cms.list') }}">CMSpages</a>
-                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contact-front::contact-us') }}">Contact</a>
-                </li>
+
             </ul>
         </div>
     </div>

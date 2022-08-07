@@ -75,6 +75,12 @@
                         aria-hidden="true"></i><span class="nav-label">Categories</span></a>
             </li>
             @endcan
+            @can('user_view')
+            <li class="{{ isActiveRoute(['admin::products.index', 'admin::products.create', 'admin::products.edit']) }}">
+                <a href="{{ url(config('settings.ADMIN_PREFIX').'products') }}"><i class="fa fa-users"
+                        aria-hidden="true"></i><span class="nav-label">Products</span></a>
+            </li>
+            @endcan
         </ul>
     </div>
 </nav>

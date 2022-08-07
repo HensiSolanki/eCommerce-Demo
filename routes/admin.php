@@ -42,6 +42,9 @@
         Route::get('category/datatable', 'CategoriesController@getDatatable');
         Route::resource('category', 'CategoriesController');
 
+        Route::get('products/datatable', 'ProductController@getDatatable');
+        Route::resource('products', 'ProductController');
+
     });
 };
 

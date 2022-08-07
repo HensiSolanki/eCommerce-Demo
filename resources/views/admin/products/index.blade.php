@@ -35,9 +35,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>ategory Name</th>
-                                    <th>Slug</th>
-                                    <th>Categories Image</th>
+                                    <th>Product Name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Category</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -68,22 +69,22 @@
             columns: [
                 { data: 'DT_RowIndex', searchable: false, orderable:false, width: 20 },
                 {
-                    data: 'category_name',
-                    name: 'category_name'
+                    data: 'product_name',
+                    name: 'product_name'
                 },
                 {
-                    data: 'category_slug',
-                    name: 'category_slug'
+                    data: 'description',
+                    name: 'description'
                 },
                 {
-                data: 'image_thumb_url',
-                name: 'image',
-                'bSortable': false,
-                'aTargets': [-1],
-                'render': function(data, type, row) {
-                    return `<img src="${data}" />`;
-                }
-            },
+                    data: 'price',
+                    name: 'price'
+                },
+                {
+                    data: 'category_id',
+                    name: 'category_id'
+                },
+
                 {
                     data:  null,
                     orderable: false,

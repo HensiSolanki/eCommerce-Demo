@@ -6,18 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+
 
 class CategoriesController extends Controller
 {
     public function __construct(Category $model)
     {
-        $this->middleware('permission:user_view', ['only' => ['index', 'getDatatable']]);
-        $this->middleware('permission:user_add', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user_edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user_delete', ['only' => ['destroy']]);
+        $this->middleware('permission:categories_view', ['only' => ['index', 'getDatatable']]);
+        $this->middleware('permission:categories_add', ['only' => ['create', 'store']]);
+        $this->middleware('permission:categories_edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:categories_delete', ['only' => ['destroy']]);
 
         $this->moduleName = "Category";
         $this->moduleRoute = url(config('settings.ADMIN_PREFIX') . 'category');
@@ -34,10 +38,17 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getDatatable()
+    public function getDatatable(Request $request)
     {
-        $result = $this->model->all();
-        return DataTables::of($result)->addIndexColumn()->make(true);
+        if ($request->ajax()) {
+            $category = Category::select([
+                'id', 'image', 'category_name', 'category_slug',
+                DB::raw("image AS image_thumb_url")
+            ]);
+
+            return Datatables::of($category)->addIndexColumn()
+                ->make(true);
+        }
     }
     public function index()
     {
@@ -66,12 +77,27 @@ class CategoriesController extends Controller
         $this->validate($request, [
             'category_name' => ['required', 'string', 'max:255'],
             'category_slug' => ['required', 'string', 'max:255'],
+            'image'=>['required','mimes:png,jpeg,gif,jpg']
         ]);
 
-        $input = $request->only(['category_name', 'category_slug']);
+        $input = $request->only(['category_name', 'category_slug','image']);
         try {
-            $status = $this->model->create($input);
-            if ($status) {
+            $category = new Category;
+
+            if ($request->hasFile('image')) {
+
+                $image = $request->file('image')->store('categories');
+                $filename = basename($image);
+                $img = Image::make($request->file('image'))->resize(150, 150, function ($const) {
+                    $const->aspectRatio();
+                })->save();
+                Storage::put('categories/thumbnails/' . $filename, $img);
+                $category->image = $filename;
+            }
+            $category->category_name = $input['category_name'];
+            $category->category_slug = $input['category_slug'];
+            $category->save();
+            if ($category->save()) {
                 return redirect($this->moduleRoute)->with("success", $this->moduleName . " Created Successfully");
             }
             return redirect($this->moduleRoute)->with("error", "Sorry, Something went wrong please try again");
@@ -115,15 +141,33 @@ class CategoriesController extends Controller
         $this->validate($request, [
             'category_name' => ['required', 'string', 'max:255'],
             'category_slug' => ['required', 'string', 'max:255', 'unique:categories,id,' . $id],
+            'image'=>['required','mimes:png,jpeg,gif,jpg']
         ]);
 
-        $input = $request->only(['category_name', 'category_slug']);
-
+        $input = $request->only(['category_name', 'category_slug','image']);
+        $category = Category::find($id);
+        $category->category_name = $request->category_name;
+        $category->category_slug = $request->category_slug;
         try {
-            $user = $this->model->where('id', $id)->first();
-            if ($user) {
-                $status = $user->update($input);
-                if ($status) {
+            if ($request->hasFile('image')) {
+                if (Storage::exists('categories/thumbnails/' . $category->image)) {
+                    Storage::disk()->delete('categories/thumbnails/' . $category->image);
+                }
+                if (Storage::exists('categories/' . $category->image)) {
+                    Storage::disk()->delete('categories/' . $category->image);
+                }
+                $image = $request->file('image')->store('categories');
+                $filename = basename($image);
+                $img = Image::make($request->file('image'))->resize(150, 150, function ($const) {
+                    $const->aspectRatio();
+                })->save();
+                Storage::disk()->put('categories/thumbnails/' . $filename, $img);
+
+                $category->image = $filename;
+            }
+            if ($category) {
+                $category->update();
+                if ($category->update()) {
                     return redirect($this->moduleRoute)->with("success", $this->moduleName . " Updated Successfully");
                 }
             }

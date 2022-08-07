@@ -45,92 +45,48 @@ return [
             'description' => "Admin Delete"
         ]
     ],
-    "testimonial" => [
+    "categories" => [
         [
-            'name' => "testimonial_view",
-            'display_name' => "Testimonial View",
-            'description' => "Testimonial View"
+            'name' => "categories_view",
+            'display_name' => "categories View",
+            'description' => "categories View"
         ],
         [
-            'name' => "testimonial_add",
-            'display_name' => "Testimonial Add",
-            'description' => "Testimonial Add"
+            'name' => "categories_add",
+            'display_name' => "categories Add",
+            'description' => "categories Add"
         ],
         [
-            'name' => "testimonial_edit",
-            'display_name' => "Testimonial Edit",
-            'description' => "Testimonial Edit"
+            'name' => "categories_edit",
+            'display_name' => "categories Edit",
+            'description' => "categories Edit"
         ],
         [
-            'name' => "testimonial_delete",
-            'display_name' => "Testimonial Delete",
-            'description' => "Testimonial Delete"
+            'name' => "categories_delete",
+            'display_name' => "categories Delete",
+            'description' => "categories Delete"
         ]
     ],
-    "media" => [
+    "products" => [
         [
-            'name' => "media_view",
-            'display_name' => "Media View",
-            'description' => "Media View"
+            'name' => "products_view",
+            'display_name' => "Products View",
+            'description' => "Products View"
         ],
         [
-            'name' => "media_add",
-            'display_name' => "Media Add",
-            'description' => "Media Add"
+            'name' => "products_add",
+            'display_name' => "Products Add",
+            'description' => "Products Add"
         ],
         [
-            'name' => "media_edit",
-            'display_name' => "Media Edit",
-            'description' => "Media Edit"
+            'name' => "products_edit",
+            'display_name' => "Products Edit",
+            'description' => "Products Edit"
         ],
         [
-            'name' => "media_delete",
-            'display_name' => "Media Delete",
-            'description' => "Media Delete"
-        ]
-    ],
-    "blog" => [
-        [
-            'name' => "blog_view",
-            'display_name' => "Blog View",
-            'description' => "Blog View"
-        ],
-        [
-            'name' => "blog_add",
-            'display_name' => "Blog Add",
-            'description' => "Blog Add"
-        ],
-        [
-            'name' => "blog_edit",
-            'display_name' => "Blog Edit",
-            'description' => "Blog Edit"
-        ],
-        [
-            'name' => "blog_delete",
-            'display_name' => "Blog Delete",
-            'description' => "Blog Delete"
-        ]
-    ],
-    "blog_category" => [
-        [
-            'name' => "blog_category_view",
-            'display_name' => "Blog Category View",
-            'description' => "Blog Category View"
-        ],
-        [
-            'name' => "blog_category_add",
-            'display_name' => "Blog Category Add",
-            'description' => "Blog Category Add"
-        ],
-        [
-            'name' => "blog_category_edit",
-            'display_name' => "Blog Category Edit",
-            'description' => "Blog Category Edit"
-        ],
-        [
-            'name' => "blog_category_delete",
-            'display_name' => "Blog Category Delete",
-            'description' => "Blog Category Delete"
+            'name' => "products_delete",
+            'display_name' => "Products Delete",
+            'description' => "Products Delete"
         ]
     ],
 ];

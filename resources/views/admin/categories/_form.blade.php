@@ -23,4 +23,16 @@
 			@enderror
 		</div>
 	</div>
+    <div class="col-md-6">
+		<div class="form-group mb-3">
+			<label>Image</label>
+			<input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+				data-validation="required" value="{{ isset($result) ? $result['image'] : old('image') }}">
+			@error('image')
+			<span class="invalid-feedback" role="alert">
+				<strong>{{ $message }}</strong>
+			</span>
+			@enderror
+		</div>
+	</div>
 	</div>
