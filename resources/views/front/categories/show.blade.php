@@ -3,6 +3,9 @@
 <div class="row">
     @foreach($products as $product)
         <div class="col-xs-18 col-sm-6 col-md-3">
+
+
+
             <div class="card mr-3" style="width: 18rem;">
                 <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap">
                 <div class="card-body">

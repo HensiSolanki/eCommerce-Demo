@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 
-
 class CategoriesController extends Controller
 {
     public function __construct(Category $model)
@@ -63,7 +62,6 @@ class CategoriesController extends Controller
     public function create()
     {
         return view("admin.$this->moduleView.create");
-
     }
 
     /**
@@ -82,16 +80,12 @@ class CategoriesController extends Controller
 
         $input = $request->only(['category_name', 'category_slug','image']);
         try {
-            $category = new Category;
+            $category = new Category();
 
             if ($request->hasFile('image')) {
-
-                $image = $request->file('image')->store('categories');
-                $filename = basename($image);
-                $img = Image::make($request->file('image'))->resize(150, 150, function ($const) {
-                    $const->aspectRatio();
-                })->save();
-                Storage::put('categories/thumbnails/' . $filename, $img);
+                $image = $request->file('image');
+                $filename=$image->getClientOriginalName();
+                $image->move(public_path().'/categories/', $filename);
                 $category->image = $filename;
             }
             $category->category_name = $input['category_name'];
@@ -150,19 +144,9 @@ class CategoriesController extends Controller
         $category->category_slug = $request->category_slug;
         try {
             if ($request->hasFile('image')) {
-                if (Storage::exists('categories/thumbnails/' . $category->image)) {
-                    Storage::disk()->delete('categories/thumbnails/' . $category->image);
-                }
-                if (Storage::exists('categories/' . $category->image)) {
-                    Storage::disk()->delete('categories/' . $category->image);
-                }
-                $image = $request->file('image')->store('categories');
-                $filename = basename($image);
-                $img = Image::make($request->file('image'))->resize(150, 150, function ($const) {
-                    $const->aspectRatio();
-                })->save();
-                Storage::disk()->put('categories/thumbnails/' . $filename, $img);
-
+                $image = $request->file('image');
+                $filename=$image->getClientOriginalName();
+                $image->move(public_path().'/categories/', $filename);
                 $category->image = $filename;
             }
             if ($category) {

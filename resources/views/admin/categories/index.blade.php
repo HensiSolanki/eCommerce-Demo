@@ -81,7 +81,7 @@
                 'bSortable': false,
                 'aTargets': [-1],
                 'render': function(data, type, row) {
-                    return `<img src="${data}" />`;
+                    return `<img src="${data}" width="100" height="100"/>`;
                 }
             },
                 {

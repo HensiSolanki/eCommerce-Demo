@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -18,6 +19,12 @@ class CategoriesController extends Controller
     public function index()
     {
         $products = \App\Models\Category::all();
+        // $products = \App\Models\Category::select(
+        //     'id',
+        //     'category_name',
+        //     'category_slug',
+        //     DB::raw("image AS image_thumb_url")
+        // );
         return view('front.category', compact('products'));
     }
 
@@ -50,7 +57,16 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::select(
+            'products.id',
+            'products.image',
+            'products.product_name',
+            'products.category_id',
+            'products.description',
+            DB::raw("products.image AS image_thumb_url")
+        )->join('categories', 'categories.id', '=', 'products.category_id')->where('products.category_id', $id)->get();
+
+        return view('front/products', compact('products'));
     }
 
     /**

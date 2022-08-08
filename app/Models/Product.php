@@ -23,4 +23,16 @@ class Product extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+    public function getImageThumbUrlAttribute()
+    {
+        if ($this->image) {
+            return url('public/products/thumbnails/' . $this->image);
+        }
+    }
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return url('public/products/' . $this->image);
+        }
+    }
 }

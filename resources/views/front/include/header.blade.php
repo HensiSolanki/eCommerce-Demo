@@ -19,6 +19,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">Register</a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('admins/dashboard') }}">Admin</a>
                 </li>

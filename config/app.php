@@ -179,7 +179,6 @@ return [
         // datatable
         Yajra\DataTables\DataTablesServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class
 
     ],
 
@@ -233,7 +232,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
     ],
 
 ];

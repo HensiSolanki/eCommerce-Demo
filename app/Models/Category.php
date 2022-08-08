@@ -23,4 +23,10 @@ class Category extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+    public function getImageThumbUrlAttribute()
+    {
+        if ($this->image) {
+            return url('categories/' . $this->image);
+        }
+    }
 }
