@@ -16,10 +16,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
                 </li>
+                @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">Register</a>
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('admins/dashboard') }}">Admin</a>
                 </li>
@@ -62,6 +70,8 @@
                      </div>
                  </div>
                  </li>
+            @endguest
+
             </ul>
         </div>
     </div>

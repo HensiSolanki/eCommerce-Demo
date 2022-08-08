@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::select(
+            'id',
+            'image',
+            'price',
+            'product_name',
+            'category_id',
+            'description',
+            DB::raw("image AS image_thumb_url"))->get();
+
         return view('front/products', compact('products'));
     }
 
@@ -46,7 +55,7 @@ class ProductController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $product->name,
+                "name" => $product->product_name,
                 "quantity" => 1,
                 "price" => $product->price,
                 "image" => $product->image

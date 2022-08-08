@@ -60,6 +60,7 @@ class CategoriesController extends Controller
         $products = Product::select(
             'products.id',
             'products.image',
+            'products.price',
             'products.product_name',
             'products.category_id',
             'products.description',

@@ -26,13 +26,13 @@ class Product extends Model
     public function getImageThumbUrlAttribute()
     {
         if ($this->image) {
-            return url('public/products/thumbnails/' . $this->image);
+            return url('/products/' . json_encode($this->image[0]));
         }
     }
     public function getImageUrlAttribute()
     {
         if ($this->image) {
-            return url('public/products/' . $this->image);
+            return url('/products/' . $this->image[0]);
         }
     }
 }

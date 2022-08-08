@@ -2,6 +2,7 @@
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Front\CategoriesController;
+use App\Http\Controllers\Front\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,13 @@ Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('r
 
 Route::resource('category', 'CategoriesController');
 Route::resource('users', 'UserController');
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
+Route::get('registration', [AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
+Route::get('dashboard', [AuthController::class, 'dashboard']);
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 };
 
 Route::group(['prefix' => '/', 'namespace' => 'Front'], $appRoutes);

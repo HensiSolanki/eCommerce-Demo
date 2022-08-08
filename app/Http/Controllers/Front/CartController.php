@@ -17,9 +17,10 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+        dd($request);
         \Cart::add([
             'id' => $request->id,
-            'name' => $request->name,
+            'name' => $request->product_name,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(

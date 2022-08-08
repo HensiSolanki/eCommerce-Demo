@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
-                        <form novalidate method="POST" action="{{ route('users.store') }}">
+                        <form novalidate method="POST" action="{{ route('login.post') }}">
                             @csrf
 
                             <div class="row mb-3">
